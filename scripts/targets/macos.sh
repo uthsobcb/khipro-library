@@ -10,6 +10,7 @@ ARCH="${KHIPRO_MACOS_ARCH:-$(uname -m)}"
 # Without this, objects inherit the builder's SDK version and consumers linking
 # against an older target get "built for newer macOS" warnings per object.
 MACOS_MIN="${KHIPRO_MACOS_MIN:-11.0}"
+[[ "$MACOS_MIN" == *.* ]] || MACOS_MIN="${MACOS_MIN}.0"
 OUT="$DIST/macos/$ARCH"
 BUILD="$ROOT/build/macos-$ARCH"
 JOBS="$(sysctl -n hw.ncpu 2>/dev/null || echo 4)"
